@@ -1,0 +1,19 @@
+//- inc/_nav.pug
+
+nav
+  ul
+
+    if key != 'top'
+      li
+        a(href=pages.top.url) トップページ
+    li
+      a(href=pages.about.url) ABOUT
+    li
+      a(href=pages.map.url) マップ
+
+    if works_state == "public"
+      li
+        a(href=pages.works.url) 制作実績
+    else if works_state == "comingsoon"
+      li
+        span(title=pages.works.name+" Coming Soon...") （制作実績）準備中です

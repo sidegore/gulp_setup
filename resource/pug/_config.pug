@@ -1,0 +1,43 @@
+//- _config.pug
+
+- var imgPath = 'images/'
+- var cssPath = 'css/'
+- var jsPath = 'js/'
+- var domain = 'https://example.com/'
+//- ▼ 公開前のページ
+- var works_state = 'comingsoon'
+-
+  var pages = {
+    top : {
+      url : 'index.html',
+      name : 'トップページ',
+      title : 'トップページ',
+      description : 'トップページの紹介文です',
+      keywords : 'pug,gulp,sass,トップページ',
+      image : 'sample.png'
+    },
+    about : {
+      url : 'about.html',
+      name : 'ABOUT',
+      title : 'アバウトページ',
+      description : 'このサイトについて説明をするページになります',
+      keywords : 'pug,gulp,sass,about',
+      image : 'about/keyvisual.png'
+    },
+    map : {
+      url : 'map.html',
+      name : 'マップ',
+      title : 'マップ',
+      description : 'マップの紹介文です',
+      keywords : 'pug,gulp,sass,マップ',
+      image : 'map/keyvisual.png'
+    },
+    works : {
+      url : 'works.html',
+      name : '制作実績',
+      title : '制作実績',
+      description : '制作実績の紹介文です',
+      keywords : 'pug,gulp,sass,制作実績',
+      image : 'images/sample.png'
+    }
+  }

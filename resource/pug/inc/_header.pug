@@ -1,0 +1,12 @@
+//- inc/_header.pug
+
+header
+  .logo
+    if key == 'top'
+      h1
+        a(href=pages.top.url)
+          img(src=imgPath+"/common/logo_top.png" alt=pages.top.name)
+    else
+      p
+        a(href=pages.top.url)
+          img(src=imgPath+"/common/logo.png" alt=pages.top.name)
