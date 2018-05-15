@@ -4,15 +4,15 @@ extends layout/_layout
 
 block vars
 
-  include _config
+    include _config
 
-  - var key = "top"
-  - var page = pages[key]
+    - var key = "top"
+    - var page = pages[key]
 
 block content
 
-  h2 #{page.title}
+    h2 #{page.title}
 
-  .keyvisual_container
-    p.keyvisual_image
-      img(src=imgPath+pages.top.image, alt="")
+    .keyvisual_container
+        p.keyvisual_image
+            img(src=imgPath+pages.top.image, alt="")
