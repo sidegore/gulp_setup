@@ -10,5 +10,5 @@ indent_size = 4
 [*.php]
 indent_size = 4
 
-[*.{html,scss,coffee}]
-indent_size = 2
+[*.{pug,sass}]
+indent_size = 4

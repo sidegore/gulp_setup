@@ -23,7 +23,10 @@ const notifier = require('node-notifier');
 const plumber = require('gulp-plumber');
 // 変更したものだけコンパイルするようにキャッシュさせるプラグインの読み込み
 const changed = require('gulp-changed');
+const progeny = require('gulp-progeny');
 const cache = require('gulp-cached');
+// ベンダープレフィックスを自動で付与するプラグインの読み込み
+const autoprefixer = require("gulp-autoprefixer");
 
 
 // 元となるディレクトリと出力先ディレクトリを定義
@@ -61,6 +64,8 @@ const errorHandler_s = function(error) {
 gulp.task('pug', () => {
 	// インクルード用のpugファイルは除外！
 	return gulp.src(['resource/pug/**/*.pug', '!resource/pug/**/_*.pug'])
+        .pipe(cache('sass'))
+        .pipe(progeny())
 		// Pugのコンパイルエラーを表示（これがないとウォッチタスクが自動的に止まってしまう）
 		.pipe(plumber({errorHandler: errorHandler}))
 		.pipe(pug({
@@ -75,6 +80,8 @@ gulp.task('pug', () => {
 gulp.task('sass', () => {
 	// scssファイルからcssファイルを書き出し
 	return gulp.src('resource/sass/**/*.sass')
+        .pipe(cache('sass'))
+        .pipe(progeny())
 		// Sassのコンパイルエラーを表示
 		.pipe(plumber({errorHandler: errorHandler_s}))
 		.pipe(sass({
@@ -86,6 +93,12 @@ gulp.task('sass', () => {
 		})
 		// ウォッチタスクが自動的に止まるのを防止
 		.on('error', sass.logError))
+        .pipe(autoprefixer({
+            // ☆IEは11以上、Androidは4.4以上
+            // その他は最新2バージョンで必要なベンダープレフィックスを付与する
+            browsers: ["last 2 versions", "ie >= 11", "Android >= 4"],
+            cascade: false
+        }))
 		.pipe(gulp.dest('public_html/css'));
 });
 
@@ -94,6 +107,8 @@ gulp.task('sass', () => {
 // jsの圧縮設定
 gulp.task('js', () => {
 	return gulp.src(['resource/js/**/*.js'])
+    .pipe(cache('sass'))
+    .pipe(progeny())
 	// ▼ .minなjsは除外！
 	// return gulp.src(['resource/js/**/*.js', '!resource/js/**/*.min.js'])
 		.pipe(plumber())
