@@ -4,15 +4,21 @@ extends layout/_layout
 
 block vars
 
-  include _config
+    include _config
 
-  - var key = "about"
-  - var page = pages[key]
+    - var key = "about"
+    - var page = pages[key]
 
 block content
 
-  h2 #{page.title}
+    h2 #{page.title}
 
-  .keyvisual_container
-    p.keyvisual_image
-      img(src=imgPath+pages.about.image, alt="")
+    .keyvisual_container
+        p.keyvisual_image
+            img(src=imgPath+pages.about.image, alt="")
+
+    p.komatta= "困った&困ったaエスケープ用の書き方"
+
+    #kore くまったくまった
+        br
+        | やばい
